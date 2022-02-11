@@ -21,15 +21,8 @@ public class GeneradorDeNumeros {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        //Set<Integer> lista_numeros = new HashSet<Integer>();
-        /*ArrayList<Integer> lista_numeros = new ArrayList<>();
-        while(lista_numeros.size()<1000000)
-        {
-            int random = ThreadLocalRandom.current().nextInt(-10000000,10000000+1);
-            lista_numeros.add(random);
-        }
-        System.out.println("Hay: "+lista_numeros.size()+" numeros en el array");
-        Archivo.Guardar_como(lista_numeros);*/
+        
+        //Archivo.Guardar_como();
         Archivo.Ordenar();
     }
     
