@@ -11,11 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import java.util.stream.Collectors;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -26,8 +23,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 public class Archivo {
-    public static void Guardar_como() throws IOException {
-        ArrayList<Integer> lista_numeros = new ArrayList<>();
+    public static void Generar() throws IOException {
+        HashSet<Integer> lista_numeros = new HashSet<>();
         while(lista_numeros.size()<1000000)
         {
             int random = ThreadLocalRandom.current().nextInt(-10000000,10000000+1);
@@ -43,7 +40,7 @@ public class Archivo {
             PrintWriter imprimir=new PrintWriter(escribir);   
             imprimir.print(lista_numeros);
             imprimir.close();
-            System.out.println("Pacientes guardados correctamente...");
+            System.out.println("Numeros generados correctamente...");
  
         } catch (FileNotFoundException fnfe) {
             System.out.println("Error: El fichero no existe. ");
@@ -53,31 +50,7 @@ public class Archivo {
     
     public static void Ordenar() throws IOException
     {
-        /*List <String> orden = new ArrayList<String>();
-        String orden2[];
-        try{
-            String salida = null;
-            BufferedReader Lectura = new BufferedReader(new FileReader("prueba.txt"));
-            
-
-            String linea = Lectura.readLine(); 
-            while(linea!=null)
-            {
-                orden.add(linea);
-                linea=Lectura.readLine();
-            }
-            ArrayList<Integer> resultado = getIntegerArray(orden);
-            orden2=orden.toArray(new String [orden.size()]);
-            //Arrays.sort(orden2);
-            Collections.sort(orden);
-            
-        System.out.print(orden);
-        //System.out.print(Arrays.toString(orden2));
-        }catch(FileNotFoundException e){
-            System.out.println("El Archivo solicitado no ha sido encontrado" + e.getMessage());
-        }catch(IOException IOe){
-            System.out.println("El Archivo solicitado no se pudo abrir o cerrar" + IOe.getMessage());
-        }*/
+        
         File archivo = new File("Ordenados.txt");
         archivo.createNewFile();
         
@@ -90,14 +63,13 @@ public class Archivo {
 
         ArrayList<Integer> resultado = Pasar_Arr_Int(lineas);
         Collections.sort(resultado);
-
+        //ArrayList<Integer> ordenado = burbuja(resultado);
         //List<Integer> listOfInteger = lineas.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
-        
-        
-            FileWriter escribir = new FileWriter(archivo);
-            PrintWriter imprimir=new PrintWriter(escribir);   
-            imprimir.print(resultado);
-            imprimir.close();
+
+        FileWriter escribir = new FileWriter(archivo);
+        PrintWriter imprimir=new PrintWriter(escribir);   
+        imprimir.print(resultado);
+        imprimir.close();
     }
     
     public static ArrayList<Integer> Pasar_Arr_Int(ArrayList<String>numeros){
@@ -109,5 +81,26 @@ public class Archivo {
             }
         }
         return Convertir;
+    }
+    
+    
+    public static ArrayList<Integer> burbuja(ArrayList<Integer> arreglo)
+    {
+      int auxiliar;
+      ArrayList<Integer> arregloOrdenado = new ArrayList<>();
+      for(int i = 1; i < arreglo.size(); i++)
+      {
+        for(int j = 0;j < arreglo.size()-i;j++)
+        {
+          if(arreglo.get(j) > arreglo.get(j+1))
+          {
+            auxiliar = arreglo.get(j);
+            arreglo.set(j, arreglo.get(j+1));
+            arreglo.set(j+1,  auxiliar);
+          }   
+        }
+      }
+      arregloOrdenado = arreglo;
+      return arregloOrdenado;
     }
 }
