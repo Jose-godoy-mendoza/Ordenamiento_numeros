@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package generadordenumeros;
+import Vistas.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,10 +22,13 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        Inicio inicio = new Inicio();
-        inicio.show();
-        //Archivo.Guardar_como();
-        //Archivo.Ordenar();
+        frm_Estructuras estructuras = new frm_Estructuras();
+        estructuras.show();
+        //Inicio inicio = new Inicio();
+        //inicio.show();
+        
+        
+        
     }
     
 }
